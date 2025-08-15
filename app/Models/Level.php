@@ -10,6 +10,10 @@ class Level extends Model
     {
         return $this->hasMany(ClassModel::class);
     }
+     public function level()
+    {
+        return $this->belongsToMany(Level::class);
+    }
 
     public function subjects()
     {

@@ -10,12 +10,12 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('subjects', function (Blueprint $table) {
+        Schema::create('exam_student', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->foreignId('level_id')->constrained();
-            $table->unsignedBigInteger('number_session')->nullable();
-
+            $table->foreignId('student_id')->constrained()->onDelete('cascade');
+            $table->foreignId('exam_id')->constrained()->onDelete('cascade');
+            $table->timestamp('start_time')->nullable();
+            $table->timestamp('submitted_at')->nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('subjects');
+        Schema::dropIfExists('exam_user');
     }
 };

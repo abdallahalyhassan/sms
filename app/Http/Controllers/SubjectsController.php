@@ -15,7 +15,7 @@ class SubjectsController extends Controller
          if (Gate::denies('is_admin')) {
             abort(403);
         }
-        $subjects = Subject::where('level', $level)->with("teacher")->get();
+        $subjects = Subject::where('level_id', $level)->with("teacher")->get();
         // dd($subjects);
         return view('subjects.index', compact('subjects', 'level'));
 

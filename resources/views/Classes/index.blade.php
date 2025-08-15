@@ -52,8 +52,6 @@
                                                 <a href="{{route('admin.attendance', $class->id) }}"
                                                     class="btn btn-info">Add Attendace</a>
                                             </td>
-                                            
-                                            
                                         </tr>
                                     @endforeach
 

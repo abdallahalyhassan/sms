@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Attendancecontroller;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ClassesController;
+use App\Http\Controllers\ExamController;
 use App\Http\Controllers\Gradecontroller;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\PDFController;
@@ -22,7 +23,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('admin.dashboard');
 
 
 Route::middleware('auth')->group(function () {
@@ -36,7 +37,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/student/dashboard', [StudentController::class, 'dashboard'])->name('student.dashboard');
     Route::get('/teacher/dashboard', [TeacherController::class, 'dashboard'])->name('teacher.dashboard');
-    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    // Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
 
 
@@ -93,7 +94,16 @@ Route::middleware('auth')->group(function () {
     Route::get('pdf/grade/student', [PDFController::class, "gradeforstudent"])->middleware(['auth', 'verified'])->name("pdf.gradeforstudent");
 
 
+    Route::prefix("exam")->group(function(){
+        Route::get('/{class_id}', [ExamController::class, 'index'])->name('exams.index');
+        Route::get('/create/{subject}', [ExamController::class, 'create'])->name('exams.create');
+        Route::post('/store', [ExamController::class, 'store'])->name('exams.store');
+        Route::get('/start/{exam}', [ExamController::class, 'start'])->name('exams.start');
+        Route::post('/save', [ExamController::class, 'save'])->name('exams.save');
 
+
+
+    });
 
 
 

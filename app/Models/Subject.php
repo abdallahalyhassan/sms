@@ -11,7 +11,7 @@ class Subject extends Model
 
     protected $fillable = [
         'name',
-        "level",
+        "level_id",
 
     ];
 
@@ -20,9 +20,9 @@ class Subject extends Model
     {
         return $this->belongsToMany(Student::class);
     }
-    public function levels()
+    public function level()
     {
-        return $this->belongsToMany(Level::class);
+        return $this->belongsTo(Level::class);
     }
 
     public function teacher()
@@ -38,9 +38,16 @@ class Subject extends Model
     {
         return $this->hasMany(Grade::class);
     }
+       public function exams()
+    {
+        return $this->hasMany(Exam::class);
+    }
 
-
-
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
+   
 }
 
 

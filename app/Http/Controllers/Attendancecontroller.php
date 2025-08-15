@@ -15,7 +15,7 @@ class Attendancecontroller extends Controller
 {
     public function index($id)
     {
-         if (Gate::denies('is_admin')) {
+         if (Gate::denies('is_or_admin_teacher')) {
             abort(403);
         }
         $students = Student::where("class_id", $id)->with("class")->get();
@@ -37,7 +37,7 @@ class Attendancecontroller extends Controller
     public function addAttendance(Request $request)
     {
         if (Gate::denies('is_or_admin_teacher')) {
-            abort(403);
+            dd(123);
         }
         
         $request->validate([

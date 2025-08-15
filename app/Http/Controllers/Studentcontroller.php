@@ -63,7 +63,7 @@ class Studentcontroller extends Controller
     public function store(Request $request)
     {
 
-
+        
         if (Gate::denies('is_admin')) {
             abort(403);
         }
@@ -99,7 +99,7 @@ class Studentcontroller extends Controller
         ]);
         $class->current_students++;
         $class->save();
-        $subjects = Subject::where("level", $validated['level'])->get();
+        $subjects = Subject::where("level_id", $validated['level'])->get();
         $student->subjects()->attach($subjects);
 
         return redirect()->back()->with('success', 'User and student created successfully');

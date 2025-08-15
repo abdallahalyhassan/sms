@@ -4,7 +4,7 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>All Teachers</h1>
+            <h1>All Classees</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -30,6 +30,7 @@
                                         <th>current student</th>
                                         <th>Attendance</th>
                                         <th>Grade</th>
+                                        <th>Exams</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -54,6 +55,11 @@
                                               
                                                 <a href="{{ route('grades.index', $class->id) }}"
                                                     class="btn btn-info">Grades</a>
+                                            </td>
+                                            <td>
+                                              
+                                                <a href="{{ route('exams.index',  $class->id) }}"
+                                                    class="btn btn-info">Exams</a>
                                             </td>
 
                                         </tr>

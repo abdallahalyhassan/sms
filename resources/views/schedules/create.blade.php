@@ -109,7 +109,7 @@
         $('#level_id').on('change', function() {
             let levelID = $(this).val();
             $.get('/schedules/classes/' + levelID, function(data) {
-                $('#class_id').empty().append('<option value="">اختر الفصل</option>');
+                $('#class_id').empty().append('<option value="">chose class</option>');
                 data.forEach(cls => {
                     $('#class_id').append('<option value="' + cls.id + '">' + cls.name +
                         '</option>');
@@ -120,7 +120,7 @@
         $('#class_id').on('change', function() {
             let classID = $(this).val();
             $.get('/schedules/subjects/' + classID, function(data) {
-                $('#subject_id').empty().append('<option value="">اختر المادة</option>');
+                $('#subject_id').empty().append('<option value="">chose subject</option>');
                 data.forEach(sub => {
                     $('#subject_id').append('<option value="' + sub.id + '">' + sub.name +
                         '</option>');
@@ -131,7 +131,7 @@
         $('#subject_id').on('change', function() {
             let subjectID = $(this).val();
             $.get('/schedules/getteachers/' + subjectID, function(data) {
-                $('#teacher_id').empty().append('<option value="">اختر المدرس</option>');
+                $('#teacher_id').empty().append('<option value="">chose teacher</option>');
                 data.forEach(teacher => {
                     $('#teacher_id').append('<option value="' + teacher.id + '">' + teacher.user
                         .name + '</option>');
@@ -145,7 +145,7 @@
             let classID = $('#class_id').val();
             // console.log(classID);
             $.get('/schedules/free-periods?teacher_id=' + teacherID + '&class_id=' + classID, function(data) {
-                $('#period').empty().append('<option value="">اختر الفترة المتاحة</option>');
+                $('#period').empty().append('<option value=""> chose period </option>');
                 data.forEach(p => {
                     $('#period').append('<option value="' +[p.period ,p.day_name] + '">' + p.day_name +
                         ' - الحصة ' + p.period + '</option>');

@@ -18,7 +18,7 @@ class Subjectseeder extends Seeder
             foreach ($subjects as $subject) {
                 Subject::create([
                     'name' => $subject,
-                    "level" => $i
+                    "level_id" => $i
 
                 ]);
             }
@@ -31,7 +31,7 @@ class Subjectseeder extends Seeder
             foreach ($subjects as $subject) {
                 Subject::firstOrCreate([
                     'name' => $subject,
-                    "level" => $i
+                    "level_id" => $i
 
                 ]);
             }

@@ -83,16 +83,16 @@ class ScheduleController extends Controller
             abort(403);
         }
         $class = ClassModel::findOrFail($classId);
-        return Subject::where('level', $class->level_id)->get();
+        return Subject::where('level_id', $class->level_id)->get();
     }
 
     public function getTeachers($subjectId)
     {
         if (Gate::denies('is_admin')) {
-            abort(403);
+            abort(code: 403);
         }
         $teachers = Teacher::whereHas('subjects', function ($q) use ($subjectId) {
-            $q->where('subject_id', $subjectId);
+            $q->where('subject_id', operator: $subjectId);
         })->with("user")->get();
         return $teachers;
 

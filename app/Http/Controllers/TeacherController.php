@@ -140,7 +140,7 @@ class TeacherController extends Controller
      */
     public function destroy(Teacher $teacher)
     {
-         if (Gate::denies('is_admin')) {
+        if (Gate::denies('is_admin')) {
             abort(403);
         }
         
@@ -157,9 +157,10 @@ class TeacherController extends Controller
 
     public function getclasses()
     {
-        $id = Auth::user()->teacher->id;
-        $schedules = Schedule::where("teacher_id", $id)->with("class")->get();
-        $classes = $schedules->pluck('class')->unique('id')->values()  ;
+        $teacher = Auth::user()->teacher;
+        $subjects=$teacher->subjects;
+       $levelIds = $subjects->pluck('level_id')->unique();
+        $classes=ClassModel::whereIn("level_id",$levelIds)->get();
         // dd($classes);
         return (view("teacher.classes"))->with('classes',$classes);
     }

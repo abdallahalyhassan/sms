@@ -34,7 +34,7 @@ class Student extends Model
     }
     public function exams()
     {
-        return $this->hasMany(Exam::class);
+        return $this->belongsToMany(Exam::class)->withPivot('start_time', 'submitted_at')->withTimestamps();
     }
     public function grades()
     {

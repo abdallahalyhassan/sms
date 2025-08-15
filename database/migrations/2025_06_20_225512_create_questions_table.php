@@ -10,14 +10,16 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('questions', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('exam_id')->constrained()->onDelete('cascade');
-            $table->string('question');
-            $table->enum('type', ['MCQ', 'trueorfalse']);
-            $table->string('correct_answer');
-            $table->timestamps();
-        });
+         Schema::create('questions', function (Blueprint $table) {
+        $table->id();
+        $table->string('type'); // 'mcq' or 'tf'
+        $table->text('question');
+        $table->json('options')->nullable(); // For MCQ questions
+        $table->string('correct_answer');
+        $table->integer('points')->default(1);
+        $table->foreignId('subject_id')->constrained()->onDelete('cascade');
+        $table->timestamps();
+    });
     }
 
     /**

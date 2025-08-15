@@ -39,8 +39,8 @@
                                                 
                                                 <td>{{ $grade->subject->name }}</td>
                                                 <td>{{ $grade->type  }}</td>
-                                                <td>{{ $grade->max_grade  }}</td>
                                                 <td>{{ $grade->grade  }}</td>
+                                                <td>{{ $grade->max_grade  }}</td>
                                             </tr>
                                          @endforeach
                                     

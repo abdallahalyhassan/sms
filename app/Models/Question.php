@@ -6,15 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Question extends Model
 {
-       protected $fillable = [
-        'exam_id',
-        'question',
-        'type',
-        'correct_answer',
+    protected $fillable = ['type', 'question', 'options', 'correct_answer', 'points', 'subject_id'];
+
+   protected $casts = [
+        'options' => 'array', 
     ];
 
-    public function exam()
+    public function subject()
     {
-        return $this->belongsTo(Exam::class);
+        return $this->belongsTo(Subject::class);
+    }
+
+    public function exams()
+    {
+        return $this->belongsToMany(Exam::class);
     }
 }

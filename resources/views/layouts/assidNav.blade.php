@@ -125,7 +125,7 @@
 
         </ul>
     @endcan
-   @can('is_student')
+    @can('is_student')
         <ul class="sidebar-nav" id="sidebar-nav">
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('student.dashboard') }}">
@@ -147,8 +147,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-journal-text"></i><span>Attendance</span><i
-                        class="bi bi-chevron-down ms-auto"></i>
+                    <i class="bi bi-journal-text"></i><span>Attendance</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
@@ -158,10 +157,22 @@
                     </li>
                 </ul>
             </li>
+             <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-journal-text"></i><span>Exams</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="{{ route('exams.index',Auth::user()->student->class->id) }}">
+                            <i class="bi bi-circle"></i><span>Exams</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
 
         </ul>
-  @endcan
-   @can('is_teacher')
+    @endcan
+    @can('is_teacher')
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
@@ -218,7 +229,9 @@
                 </ul>
             </li>
         </ul>
-    @endif
+    
+    @endcan
+
 
 
 

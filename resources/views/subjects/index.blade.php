@@ -44,7 +44,7 @@
                                         <tr>
                                             <td>{{ $subject->name }}</td>
                                             
-                                            <td>{{ $subject->level }}</td>
+                                            <td>{{ $subject->level->name }}</td>
                                             <td>
                                               
                                                
