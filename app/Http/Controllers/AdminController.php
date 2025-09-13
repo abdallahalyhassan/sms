@@ -46,12 +46,12 @@ class AdminController extends Controller
             'confirm_password' => ['required_with:password', 'same:password'],
             'role' => ['required']
         ]);
-        $user = User::create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'password' => bcrypt($validated['password']),
-            'role' => $validated['role'],
-        ]);
+            $user = User::create([
+                'name' => $validated['name'],
+                'email' => $validated['email'],
+                'password' => bcrypt($validated['password']),
+                'role' => $validated['role'],
+            ]);
 
         return redirect()->back()->with('success', 'User and Admin created successfully');
 

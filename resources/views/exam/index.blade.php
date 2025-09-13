@@ -23,7 +23,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Exams</h5>
                             @can('is_teacher')
-                                <p> <a href="{{ route('exams.create', $exams[0]->subject_id) }}">Add Exam</a></p>
+                                <p> <a href="{{ route( 'exams.create') }}">Add Exam</a></p>
                             @endcan
                             @if (session('success'))
                                 <h3 class="text-success my-2"> {{ session('success') }}</h3>
@@ -50,6 +50,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @if ($exams)
+                                        
+                                    
                                     @foreach ($exams as $exam)
                                         <tr>
                                             <td>{{ $exam->title }}</td>
@@ -71,7 +74,7 @@
 
                                         </tr>
                                     @endforeach
-
+                                    @endif
                                 </tbody>
                             </table>
                             <!-- End Table with stripped rows -->

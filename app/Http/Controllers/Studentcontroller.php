@@ -21,7 +21,7 @@ class Studentcontroller extends Controller
         if (Gate::denies('is_admin')) {
             abort(403);
         }
-        $Students = Student::with("user")->paginate(10);
+        $Students = Student::with("user")->get();
         return view('student.index', ['students' => $Students]);
     }
 

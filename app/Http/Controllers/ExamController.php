@@ -20,6 +20,7 @@ class ExamController extends Controller
     {
         $class = ClassModel::find($class_id);
         $level = $class->level;
+        // dd($class->level);
         $currentTime = now();
 
         if (Auth::user()->teacher) {
@@ -27,27 +28,37 @@ class ExamController extends Controller
             $subject = $teacher->subjects()
                 ->where('level_id', $level->id)
                 ->first();
+dd($subject);
 
-            $exams = Exam::where("subject_id", $subject->id)
-                ->where('end_time', '>', $currentTime)
-                ->get();
+            if ($subject) {
+                $exams = Exam::where("subject_id", $subject->id)
+                    ->where('end_time', '>', $currentTime)
+                    ->get();
 
+
+            } else {
+                $exams = collect(); // Collection فاضي
+            }
         } else {
             $subjects = Subject::where('level_id', $level->id)->pluck('id');
             $exams = Exam::whereIn("subject_id", $subjects)
                 ->where('end_time', '>', $currentTime)
                 ->get();
         }
-        return view("exam.index", compact("exams"));
-
-
+       
+        return view("exam.index", compact("exams","class_id"));
     }
 
 
 
 
-    public function create(Subject $subject)
+
+    public function create()
     {
+        dd(123);
+
+        $teacher = Auth::user()->teacher;
+        $subject = $teacher->subjects();
         return view("exam.create", compact("subject"));
     }
 

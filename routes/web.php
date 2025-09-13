@@ -95,8 +95,8 @@ Route::middleware('auth')->group(function () {
 
 
     Route::prefix("exam")->group(function(){
-        Route::get('/{class_id}', [ExamController::class, 'index'])->name('exams.index');
-        Route::get('/create/{subject}', [ExamController::class, 'create'])->name('exams.create');
+       Route::get('/{class_id?}', [ExamController::class, 'index'])->name('exams.index');
+        Route::get('/create', [ExamController::class, 'create'])->name('exams.create');
         Route::post('/store', [ExamController::class, 'store'])->name('exams.store');
         Route::get('/start/{exam}', [ExamController::class, 'start'])->name('exams.start');
         Route::post('/save', [ExamController::class, 'save'])->name('exams.save');

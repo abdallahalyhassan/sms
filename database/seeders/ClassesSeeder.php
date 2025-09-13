@@ -16,7 +16,7 @@ class ClassesSeeder extends Seeder
        for( $i=1;$i<=6;$i++){
           
             ClassModel::create([
-                  'name' => "level ".$i ."/ class "."1" ,
+                  'name' => "level ".$i ."/ class "."A" ,
                   "level_id"=> $i
                   
             ]);

@@ -22,7 +22,7 @@ class TeacherController extends Controller
             abort(403);
         }
         $teachers = Teacher::with("user")->paginate(10);
-
+        dd($teachers);
         return view("teacher.index", ['teachers' => $teachers]);
     }
 
